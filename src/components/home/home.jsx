@@ -1,8 +1,10 @@
 // import logo from './logo.svg'; moved from app.js so doesn't work
 // import './App.css';
+import * as React from 'react';
 import "./home.css";
-import { Button } from "@mui/material";
-import BubbleChartIcon from '@mui/icons-material/BubbleChart';
+import NavBar from "./navbar.jsx";
+
+import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 
 const CustomizedButton = styled (Button)`
@@ -16,11 +18,10 @@ export const Home = () => { //react components have to start with a capital (als
   return (
     <div className="App"> {/*might want to refactor classname app to class name home */}
       <header className="App-header">
-        <BubbleChartIcon/>
-        
+        <NavBar/>
       </header>
       <body>
-        
+
       </body>
 
       <footer>
