@@ -12,7 +12,7 @@ export default function BasicCard() {
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         sx={{ height: 140 }}
-        image="../home/images/tutoring.png"
+        image="./images/tutoring.png"
         title="tutoring"
       />
       <CardContent>

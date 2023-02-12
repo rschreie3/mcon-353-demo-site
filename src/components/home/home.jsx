@@ -29,8 +29,10 @@ export const Home = () => {
       <header className="App-header">
         <NavBar />
         <img
-          src="./images/website_goal.png"
+          src={process.env.PUBLIC_URL + 'images/website_goal.png'}
           alt="a platform to connect the flatbush jewish community"
+          height = {100}
+          width = {500}
         />
       </header>
       <body>
