@@ -2,14 +2,16 @@ import React from "react";
 import Carousel from "react-material-ui-carousel";
 import { Paper, Button } from "@mui/material";
 
+import "./home.css";
+
 function MyCarousel(props) {
   var items = [
     {
-      image: <img src="./images/babysitting.jpg" height={600} width={800} />,
+      image: <img src="./images/babysitting.jpg" height={600} width={800}/>,
       description: "Babysitting",
     },
     {
-      image: <img src="./images/office.png" height={600} widt={800} />,
+      image: <img src="./images/office.png" height={600}/>,
       description: "Office Jobs",
     },
     {
@@ -28,10 +30,8 @@ function MyCarousel(props) {
 
 function Item(props) {
   return (
-    <Paper>
+    <Paper classes={{root: "carousel"}}>
       {props.item.image}
-      <p>{props.item.description}</p>
-      <Button className="CheckButton">Check it out!</Button>
     </Paper>
   );
 }

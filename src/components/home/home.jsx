@@ -32,8 +32,9 @@ export const Home = () => {
         <img
           src={process.env.PUBLIC_URL + "images/website_goal.png"}
           alt="a platform to connect the flatbush jewish community"
-          height={100}
-          width={500}
+          height={150}
+          width={650}
+          className="carousel"
         />
       </header>
       <body>
