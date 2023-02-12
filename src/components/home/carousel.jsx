@@ -5,12 +5,15 @@ import { Paper, Button } from "@mui/material";
 function MyCarousel(props) {
   var items = [
     {
-      image: "./images/babysitting.jpg",
+      image: <img src="./images/babysitting.jpg" height={600} width={800} />,
       description: "Babysitting",
     },
     {
-      image: "./images/office.png",
+      image: <img src="./images/office.png" height={600} widt={800} />,
       description: "Office Jobs",
+    },
+    {
+      image: <img src="./images/tutoring.png" height={600} width={800} />,
     },
   ];
 
@@ -26,9 +29,8 @@ function MyCarousel(props) {
 function Item(props) {
   return (
     <Paper>
-      <h2>{props.item.name}</h2>
+      {props.item.image}
       <p>{props.item.description}</p>
-
       <Button className="CheckButton">Check it out!</Button>
     </Paper>
   );

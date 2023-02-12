@@ -7,7 +7,7 @@ import BabysittingCard from "./babysittingCard.jsx";
 import TutoringCard from "./tutoringCard.jsx";
 import OfficeJobsCard from "./officeJobsCard.jsx";
 import Carousel from "./carousel.jsx";
-import Grid from '@mui/material/Grid';
+import Grid from "@mui/material/Grid";
 
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
@@ -28,23 +28,29 @@ export const Home = () => {
       {/*might want to refactor classname app to class name home */}
       <header className="App-header">
         <NavBar />
+        <Carousel />
         <img
-          src={process.env.PUBLIC_URL + 'images/website_goal.png'}
+          src={process.env.PUBLIC_URL + "images/website_goal.png"}
           alt="a platform to connect the flatbush jewish community"
-          height = {100}
-          width = {500}
+          height={100}
+          width={500}
         />
       </header>
       <body>
-        {/* <Carousel/> */}
-        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          <Grid item xs={6}>
-            <BabysittingCard />
-          </Grid>
-          <Grid item xs={6}>
+        <Grid
+          container
+          spacing={4}
+          columns={36}
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Grid item xs={8}>
             <TutoringCard />
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={8}>
+            <BabysittingCard />
+          </Grid>
+          <Grid item xs={8}>
             <OfficeJobsCard />
           </Grid>
         </Grid>
