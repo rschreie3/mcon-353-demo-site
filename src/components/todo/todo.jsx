@@ -1,3 +1,4 @@
+import { CheckBox } from "@mui/icons-material";
 import React, {useState} from "react";
 
 export const Todo = () => {
@@ -25,9 +26,13 @@ export const Todo = () => {
             <button onClick={addTodo}>Add</button>
             {
                 todos.map((todo) => (
-                    <p>{todo}</p>
+                    <p>
+                        <input type="checkbox"/>
+                        {todo}
+                    </p>
                 ))        
             }
+
         </div>
     )
 }
