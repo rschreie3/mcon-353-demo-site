@@ -4,7 +4,7 @@ import { Button } from "@mui/material";
 import BubbleChartIcon from '@mui/icons-material/BubbleChart';
 import { styled } from '@mui/material/styles';
 import { Home } from "./components/home/home";
-import { Todo } from "./components/todo/todo";
+import { Todo } from "./components/todo/todo.jsx";
 
 const CustomizedButton = styled (Button)`
   color: red;
@@ -32,7 +32,8 @@ const CustomizedButton = styled (Button)`
 //}
 
 function App() {
-  return <Home />
+  //return <Home />
+  return <Todo />
 }
 
 export default App;
