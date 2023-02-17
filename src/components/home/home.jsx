@@ -28,7 +28,7 @@ export const Home = () => {
       {" "}
       {/*might want to refactor classname app to class name home */}
       <body>
-      <Carousel />
+        <Carousel />
         <img
           src={process.env.PUBLIC_URL + "images/website_goal.png"}
           alt="a platform to connect the flatbush jewish community"
@@ -36,7 +36,7 @@ export const Home = () => {
           width={650}
           className="carousel"
         />
-        
+
         <Grid
           container
           spacing={4}

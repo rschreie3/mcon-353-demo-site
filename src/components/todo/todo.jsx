@@ -28,7 +28,7 @@ export const Todo = () => {
   };
 
   const addTodo = () => {
-    setTodos([...todos, {title: input, isComplete: false}]);
+    setTodos([...todos, { title: input, isComplete: false }]);
     setInput("");
   };
 
@@ -42,7 +42,7 @@ export const Todo = () => {
           <input
             type="checkbox"
             checked={todo.isComplete}
-            onChange={()=> toggleChecked(todo)}
+            onChange={() => toggleChecked(todo)}
           />
           {todo.title}
         </p>

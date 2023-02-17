@@ -16,10 +16,10 @@ import BubbleChartIcon from "@mui/icons-material/BubbleChart";
 import { useNavigate } from "react-router-dom";
 
 const pages = [
-  { name: "Home", path: "/" }, 
-  { name: "Todo", path: "/todo"},
-  { name : "About Us" , path: "/aboutUs" },
-  { name: "Our Services", path: "/ourServices"},
+  { name: "Home", path: "/" },
+  { name: "Todo", path: "/todo" },
+  { name: "About Us", path: "/aboutUs" },
+  { name: "Our Services", path: "/ourServices" },
 ];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
@@ -38,7 +38,7 @@ function ResponsiveAppBar() {
 
   const handleCloseNavMenu = (page) => {
     setAnchorElNav(null);
-    if(page){
+    if (page) {
       navigate(page.path);
     }
   };
@@ -102,7 +102,10 @@ function ResponsiveAppBar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page.name} onClick={() => handleCloseNavMenu(page)}>
+                <MenuItem
+                  key={page.name}
+                  onClick={() => handleCloseNavMenu(page)}
+                >
                   <Typography textAlign="center">{page.name}</Typography>
                 </MenuItem>
               ))}
