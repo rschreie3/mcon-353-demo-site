@@ -27,10 +27,6 @@ export const Home = () => {
     <div className="App">
       {" "}
       {/*might want to refactor classname app to class name home */}
-      <header className="App-header">
-        <NavBar />
-        
-      </header>
       <body>
       <Carousel />
         <img

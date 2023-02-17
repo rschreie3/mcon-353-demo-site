@@ -5,6 +5,7 @@ import logo from "./logo.svg";
 import { Home } from "./components/home/home";
 import { Todo } from "./components/todo/todo.jsx";
 import { HashRouter, Routes, Route } from "react-router-dom";
+import Navbar from "./components/header/header.jsx";
 
 // const CustomizedButton = styled (Button)`
 //   color: red;
@@ -36,6 +37,7 @@ function App() {
 
   return (
     <HashRouter>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/todo" element={<Todo />} />
