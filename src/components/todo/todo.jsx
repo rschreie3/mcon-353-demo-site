@@ -1,5 +1,6 @@
 import { CheckBox } from "@mui/icons-material";
 import React, {useState} from "react";
+import NavBar from "../header/header.jsx"
 
 export const Todo = () => {
     const [input, setInput] = useState('');
@@ -20,7 +21,12 @@ export const Todo = () => {
 
 
     return (
-        <div>
+        <>
+            <header className="App-header">
+                <NavBar />
+        
+            </header>
+            <div>
             <h1>Todos</h1>
             <input onInput={onInput}/>
             <button onClick={addTodo}>Add</button>
@@ -33,7 +39,9 @@ export const Todo = () => {
                 ))        
             }
 
-        </div>
+            </div>
+        </>
+        
     )
 }
 

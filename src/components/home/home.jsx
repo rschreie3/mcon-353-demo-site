@@ -2,7 +2,8 @@
 // import './App.css';
 import * as React from "react";
 import "./home.css";
-import NavBar from "./navbar.jsx";
+import Header from "../header/header.jsx";
+import NavBar from "../header/header.jsx";
 import BabysittingCard from "./babysittingCard.jsx";
 import TutoringCard from "./tutoringCard.jsx";
 import OfficeJobsCard from "./officeJobsCard.jsx";
@@ -28,7 +29,10 @@ export const Home = () => {
       {/*might want to refactor classname app to class name home */}
       <header className="App-header">
         <NavBar />
-        <Carousel />
+        
+      </header>
+      <body>
+      <Carousel />
         <img
           src={process.env.PUBLIC_URL + "images/website_goal.png"}
           alt="a platform to connect the flatbush jewish community"
@@ -36,8 +40,7 @@ export const Home = () => {
           width={650}
           className="carousel"
         />
-      </header>
-      <body>
+        
         <Grid
           container
           spacing={4}

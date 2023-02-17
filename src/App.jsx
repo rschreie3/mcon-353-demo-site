@@ -1,31 +1,30 @@
-import logo from './logo.svg';
+import logo from "./logo.svg";
 // import './App.css';
-import { Button } from "@mui/material";
-import BubbleChartIcon from '@mui/icons-material/BubbleChart';
-import { styled } from '@mui/material/styles';
+// import { Button } from "@mui/material";
+// import { styled } from '@mui/material/styles';
 import { Home } from "./components/home/home";
 import { Todo } from "./components/todo/todo.jsx";
+import { HashRouter, Routes, Route } from "react-router-dom";
 
-const CustomizedButton = styled (Button)`
-  color: red;
-  :hover {
-    color: blue;
-  }
-`;
+// const CustomizedButton = styled (Button)`
+//   color: red;
+//   :hover {
+//     color: blue;
+//   }
+// `;
 
 // function App() {
 //   return (
 //     <div className="App">
 //       <header className="App-header">
 //         <BubbleChartIcon/>
-        
 //       </header>
 //       <body>
-        
+
 //       </body>
 
 //       <footer>
-        
+
 //       </footer>
 //     </div>
 //   );
@@ -33,7 +32,16 @@ const CustomizedButton = styled (Button)`
 
 function App() {
   //return <Home />
-  return <Todo />
+  // return <Todo />
+
+  return (
+    <HashRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/todo" element={<Todo />} />
+      </Routes>
+    </HashRouter>
+  );
 }
 
 export default App;
