@@ -9,8 +9,8 @@ import { styled } from "@mui/material/styles";
 import "../home/home.css";
 import { Typography } from "@mui/material";
 import Input from "@mui/material/Input";
-import AddIcon from '@mui/icons-material/Add';
-import Checkbox from '@mui/material/Checkbox';
+import AddIcon from "@mui/icons-material/Add";
+import Checkbox from "@mui/material/Checkbox";
 
 export const Todo = () => {
   const [input, setInput] = useState("");
@@ -71,16 +71,8 @@ export const Todo = () => {
       </Typography>
 
       <div align="center">
-        <Input
-          placeholder="type here..."
-          onInput={onInput}
-          value={input}
-        />
-        <IconButton
-          variant="outlined"
-          onClick={addTodo}
-          size="small"
-        >
+        <Input placeholder="type here..." onInput={onInput} value={input} />
+        <IconButton variant="outlined" onClick={addTodo} size="small">
           <AddIcon />
         </IconButton>
       </div>
@@ -93,11 +85,11 @@ export const Todo = () => {
           "& .MuiTextField-root": { m: 1, width: "25ch" },
         }}
       >
-        <Stack 
+        <Stack
           spacing={2}
           sx={{
             maxWidth: 500,
-            margin: "auto"
+            margin: "auto",
           }}
         >
           {todos.map((todo, index) => (
