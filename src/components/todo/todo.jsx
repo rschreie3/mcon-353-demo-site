@@ -3,11 +3,14 @@ import React, { useState } from "react";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
-import IconButton from '@mui/material/IconButton';
+import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { styled } from "@mui/material/styles";
 import "../home/home.css";
 import { Typography } from "@mui/material";
+import Input from "@mui/material/Input";
+import AddIcon from '@mui/icons-material/Add';
+import Checkbox from '@mui/material/Checkbox';
 
 export const Todo = () => {
   const [input, setInput] = useState("");
@@ -68,33 +71,51 @@ export const Todo = () => {
       </Typography>
 
       <div align="center">
-        <input onInput={onInput} value={input} />
-        <button onClick={addTodo}>Add</button>
+        <Input
+          placeholder="type here..."
+          onInput={onInput}
+          value={input}
+        />
+        <IconButton
+          variant="outlined"
+          onClick={addTodo}
+          size="small"
+        >
+          <AddIcon />
+        </IconButton>
       </div>
 
       <Box
+        component="form"
         sx={{
           margin: 2,
           width: "100%",
+          "& .MuiTextField-root": { m: 1, width: "25ch" },
         }}
       >
-        <Stack spacing={2}>
+        <Stack 
+          spacing={2}
+          sx={{
+            maxWidth: 500,
+            margin: "auto"
+          }}
+        >
           {todos.map((todo, index) => (
             <Item key={index}>
-                <input
-                  type="checkbox"
-                  checked={todo.isComplete}
-                  onChange={() => toggleChecked(todo)}
-                />
-                {todo.title}
+              <input
+                type="checkbox"
+                checked={todo.isComplete}
+                onChange={() => toggleChecked(todo)}
+              />
+              {todo.title}
 
-                <IconButton 
-                variant="outlined" 
+              <IconButton
+                variant="outlined"
                 onClick={() => deleteTodo(todo)}
                 size="small"
-                >
-                 <DeleteIcon fontSize="inherit"/>
-                </IconButton>
+              >
+                <DeleteIcon fontSize="inherit" />
+              </IconButton>
             </Item>
           ))}
         </Stack>
