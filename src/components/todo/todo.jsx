@@ -1,4 +1,3 @@
-import { CheckBox } from "@mui/icons-material";
 import React, { useState } from "react";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
@@ -11,6 +10,8 @@ import { Typography } from "@mui/material";
 import Input from "@mui/material/Input";
 import AddIcon from "@mui/icons-material/Add";
 import Checkbox from "@mui/material/Checkbox";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
 export const Todo = () => {
   const [input, setInput] = useState("");
@@ -101,11 +102,14 @@ export const Todo = () => {
         >
           {todos.map((todo, index) => (
             <Item key={index}>
-              <input
-                type="checkbox"
+              <Checkbox
                 checked={todo.isComplete}
                 onChange={() => toggleChecked(todo)}
+                icon={<CheckCircleOutlineIcon />}
+                checkedIcon={<CheckCircleIcon />}
+                size="small"
               />
+
               {todo.title}
 
               <IconButton
