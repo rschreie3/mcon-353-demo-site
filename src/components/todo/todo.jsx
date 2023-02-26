@@ -71,10 +71,14 @@ export const Todo = () => {
       </Typography>
 
       <div align="center">
-        <Input placeholder="type here..." onInput={onInput} value={input} 
-        sx={{
-          minWidth: 350,
-        }}/>
+        <Input
+          placeholder="type here..."
+          onInput={onInput}
+          value={input}
+          sx={{
+            minWidth: 350,
+          }}
+        />
         <IconButton variant="outlined" onClick={addTodo} size="small">
           <AddIcon />
         </IconButton>
