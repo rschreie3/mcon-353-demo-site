@@ -1,3 +1,3 @@
 import { createContext } from "react";
 
-const TodoContext = createContext({ todos: [] });
+export const TodoContext = createContext({ todos: [] });

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
@@ -12,40 +12,37 @@ import AddIcon from "@mui/icons-material/Add";
 import Checkbox from "@mui/material/Checkbox";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import { TodoContext } from "../../state/todo/todo-context";
 
 export const Todo = () => {
   const [input, setInput] = useState("");
 
-  const [todos, setTodos] = useState([
-    {
-      title: "finish homework",
-      isComplete: false,
-    },
-    {
-      title: "sleep",
-      isComplete: false,
-    },
-  ]);
+  const { todoState, todoDispatch } = useContext(TodoContext);
 
   const onInput = (event) => {
     setInput(event.target.value);
   };
 
   const addTodo = () => {
-    setTodos([...todos, { title: input, isComplete: false }]);
-    setInput("");
+    // setTodos([...todos, { title: input, isComplete: false }]);
+    // setInput("");
+    todoDispatch({ type: "ADD", todo: { title: input, isComplete: false } });
   };
 
   const toggleChecked = (todo) => {
-    const newTodos = [...todos];
-    const updatedTodo = newTodos.find((x) => x.title === todo.title);
-    updatedTodo.isComplete = !todo.isComplete;
-    setTodos(newTodos);
+    // const newTodos = [...oldTodos];
+    // const updatedTodo = newTodos.find((x) => x.title === todo.title);
+    // updatedTodo.isComplete = !todo.isComplete;
+    // setTodos(newTodos);
+    todoDispatch({
+      type: "TOGGLE",
+      todo: todo,
+    });
   };
 
   const deleteTodo = (todo) => {
-    const newTodos = todos.filter((x) => !(x.title === todo.title));
-    setTodos(newTodos);
+    // const newTodos = oldTodos.filter((x) => !(x.title === todo.title));
+    // setTodos(newTodos);
   };
 
   const Item = styled(Paper)(({ theme }) => ({
@@ -100,7 +97,7 @@ export const Todo = () => {
             margin: "auto",
           }}
         >
-          {todos.map((todo, index) => (
+          {todoState.todos.map((todo, index) => (
             <Item key={index}>
               <Checkbox
                 checked={todo.isComplete}
