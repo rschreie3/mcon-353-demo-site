@@ -24,16 +24,13 @@ export const Todo = () => {
   };
 
   const addTodo = () => {
-    // setTodos([...todos, { title: input, isComplete: false }]);
-    // setInput("");
-    todoDispatch({ type: "ADD", todo: { title: input, isComplete: false } });
+    todoDispatch({
+      type: "ADD",
+      todo: { title: input, isComplete: false },
+    });
   };
 
   const toggleChecked = (todo) => {
-    // const newTodos = [...oldTodos];
-    // const updatedTodo = newTodos.find((x) => x.title === todo.title);
-    // updatedTodo.isComplete = !todo.isComplete;
-    // setTodos(newTodos);
     todoDispatch({
       type: "TOGGLE",
       todo: todo,
@@ -41,8 +38,10 @@ export const Todo = () => {
   };
 
   const deleteTodo = (todo) => {
-    // const newTodos = oldTodos.filter((x) => !(x.title === todo.title));
-    // setTodos(newTodos);
+    todoDispatch({
+      type: "DELETE",
+      todo: todo,
+    });
   };
 
   const Item = styled(Paper)(({ theme }) => ({

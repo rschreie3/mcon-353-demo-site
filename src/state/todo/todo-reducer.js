@@ -6,7 +6,11 @@ export const todoReducer = (state, action) => {
       return { todos: [...state.todos, action.todo] };
     }
     case "DELETE": {
-      return { todos: [] };
+      let newTodos = cloneDeep(state.todos);
+      const updatedTodo = newTodos.filter(
+        (x) => !(x.title === action.todo.title)
+      );
+      return { todos: newTodos };
     }
     case "TOGGLE": {
       let newTodos = cloneDeep(state.todos);
