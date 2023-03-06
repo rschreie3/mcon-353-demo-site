@@ -28,6 +28,7 @@ export const Todo = () => {
       type: "ADD",
       todo: { title: input, isComplete: false },
     });
+    setInput("");
   };
 
   const toggleChecked = (todo) => {
