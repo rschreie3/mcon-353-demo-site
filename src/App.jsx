@@ -10,6 +10,7 @@ import Navbar from "./components/header/header.jsx";
 import { TodoContext } from "./state/todo/todo-context";
 // import { useState } from "react";
 import { todoReducer } from "./state/todo/todo-reducer";
+import { Chat } from "./components/chat/chat.jsx";
 
 // const CustomizedButton = styled (Button)`
 //   color: red;
@@ -58,6 +59,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/todo" element={<Todo />} />
+          <Route path="/chat" element={<Chat />} />
         </Routes>
       </TodoContext.Provider>
     </HashRouter>
