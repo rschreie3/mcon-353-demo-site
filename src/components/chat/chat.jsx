@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
 import { useInterval } from "../../hooks/use-interval";
+import Grid from "@mui/material/Grid";
+import { Box } from "@mui/system";
+import { Typography } from "@mui/material";
+import Button from "@mui/material/Button";
+import Popover from "@mui/material/Popover";
+import PopupState, { bindTrigger, bindPopover } from "material-ui-popup-state";
 
 export const Chat = () => {
   const [chats, setChats] = useState([]);
@@ -73,21 +79,54 @@ export const Chat = () => {
         getMessages(chatId);
       }
     },
-    1000,
+    50000,
     currentChat && currentChat.id
   );
 
   return (
-    <div>
-      <h1>Chat</h1>
-      <div style={{ display: "flex" }}>
+    <Box>
+      <Typography
+        variant="h3"
+        align="center"
+        sx={{
+          margin: 2,
+          fontFamily: "sans-serif",
+          fontWeight: 700,
+          letterSpacing: ".3rem",
+        }}
+      >
+        Chat
+      </Typography>
+
+      <Grid container justifyContent="center">
         <div>
-          <h2>Chats</h2>
-          {chats.map((chat) => (
-            <div key={chat.id}>
-              <button onClick={() => setChat(chat)}>{chat.name}</button>
-            </div>
-          ))}
+          {/* <h2>Chats</h2> */}
+          <PopupState variant="popover" popupId="">
+            {(popupState) => (
+              <div>
+                <Button variant="contained" {...bindTrigger(popupState)}>
+                  Chats
+                </Button>
+                <Popover
+                  {...bindPopover(popupState)}
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "center",
+                  }}
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "center",
+                  }}
+                >
+                  {chats.map((chat) => (
+                    <div key={chat.id}>
+                      <button onClick={() => setChat(chat)}>{chat.name}</button>
+                    </div>
+                  ))}
+                </Popover>
+              </div>
+            )}
+          </PopupState>
         </div>
         <div>
           <h2>{currentChat && currentChat.name} Messages</h2>
@@ -103,7 +142,7 @@ export const Chat = () => {
             ))}
           </div>
         </div>
-      </div>
-    </div>
+      </Grid>
+    </Box>
   );
 };
