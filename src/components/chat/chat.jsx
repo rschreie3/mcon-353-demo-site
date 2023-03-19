@@ -8,7 +8,6 @@ export const Chat = () => {
   const [inputMessage, setInputMessage] = useState("");
 
   function getChats() {
-    //put fetch call here
     fetch("https://z36h06gqg7.execute-api.us-east-1.amazonaws.com/chats")
       .then((response) => response.json())
       .then((data) => {
@@ -41,20 +40,19 @@ export const Chat = () => {
     if (currentChat) {
       const message = {
         chatId: currentChat.id,
-        username: "",
-        text: "",
+        username: "class 2023",
+        text: inputMessage,
       };
 
-      fetch(
-        "https://z36h06gqg7.execute-api.us-east-1.amazonaws.com/chats/messages",
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(chat),
-        }
-      );
+      fetch("https://z36h06gqg7.execute-api.us-east-1.amazonaws.com/messages", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(message),
+      });
+
+      setInputMessage("");
     } else {
       console.log("cannot post the message because current chat is null");
     }
@@ -75,7 +73,7 @@ export const Chat = () => {
         getMessages(chatId);
       }
     },
-    5000,
+    1000,
     currentChat && currentChat.id
   );
 
@@ -92,16 +90,18 @@ export const Chat = () => {
           ))}
         </div>
         <div>
-          <h2>{currentChat && currentChat.name}</h2>
+          <h2>{currentChat && currentChat.name} Messages</h2>
           <div>
             <input onInput={onMessageInput} value={inputMessage} />{" "}
             <button onClick={() => postMessage()}>POST</button>
           </div>
-          {messages.map((message) => (
-            <div key={message.id}>
-              {message.username}: {message.text}
-            </div>
-          ))}
+          <div>
+            {messages.map((message) => (
+              <div key={message.id}>
+                {message.username}: {message.text}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
