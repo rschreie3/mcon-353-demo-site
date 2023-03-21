@@ -6,6 +6,11 @@ import { Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import Popover from "@mui/material/Popover";
 import PopupState, { bindTrigger, bindPopover } from "material-ui-popup-state";
+import { Input } from "@mui/material";
+import IconButton from "@mui/material/IconButton";
+import SendIcon from "@mui/icons-material/Send";
+import { Stack } from "@mui/system";
+import ListItem from "@mui/material/ListItem";
 
 export const Chat = () => {
   const [chats, setChats] = useState([]);
@@ -97,10 +102,13 @@ export const Chat = () => {
       >
         Chat
       </Typography>
-
-      <Grid container justifyContent="center">
-        <div>
-          {/* <h2>Chats</h2> */}
+      <Grid
+        container
+        justifyContent="center"
+        // alignItems="center"
+        columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+      >
+        <Grid item>
           <PopupState variant="popover" popupId="">
             {(popupState) => (
               <div>
@@ -109,9 +117,13 @@ export const Chat = () => {
                 </Button>
                 <Popover
                   {...bindPopover(popupState)}
+                  anchorPosition={{
+                    top: 500,
+                    left: 200,
+                  }}
                   anchorOrigin={{
                     vertical: "bottom",
-                    horizontal: "center",
+                    horizontal: "left",
                   }}
                   transformOrigin={{
                     vertical: "top",
@@ -120,28 +132,49 @@ export const Chat = () => {
                 >
                   {chats.map((chat) => (
                     <div key={chat.id}>
-                      <button onClick={() => setChat(chat)}>{chat.name}</button>
+                      <Button onClick={() => setChat(chat)}>{chat.name}</Button>
                     </div>
                   ))}
                 </Popover>
               </div>
             )}
           </PopupState>
-        </div>
-        <div>
-          <h2>{currentChat && currentChat.name} Messages</h2>
-          <div>
-            <input onInput={onMessageInput} value={inputMessage} />{" "}
-            <button onClick={() => postMessage()}>POST</button>
-          </div>
-          <div>
+        </Grid>
+        <Grid
+          item
+          sx={{
+            height: "75vh",
+            minWidth: "85vh",
+            margin: "auto",
+            justifyContent: "center",
+            alignItems: "center",
+            borderRadius: 1,
+            borderBottom: 1,
+            borderColor: "grey.500",
+            boxShadow: 1,
+          }}
+        >
+          <Typography variant="h5" align="center" margin={1}>
+            {currentChat && currentChat.name} Messages
+          </Typography>{" "}
+          <Stack direction="column-reverse" overflow="scroll" height="60vh">
             {messages.map((message) => (
-              <div key={message.id}>
+              <ListItem key={message.id}>
                 {message.username}: {message.text}
-              </div>
+              </ListItem>
             ))}
+          </Stack>
+          <div align="center">
+            <Input onInput={onMessageInput} value={inputMessage} />
+            <IconButton
+              onClick={() => postMessage()}
+              variant="contained"
+              size="small"
+            >
+              <SendIcon />
+            </IconButton>
           </div>
-        </div>
+        </Grid>
       </Grid>
     </Box>
   );
