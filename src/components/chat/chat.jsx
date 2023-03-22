@@ -10,13 +10,24 @@ import { Input } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import SendIcon from "@mui/icons-material/Send";
 import { Stack } from "@mui/system";
-import ListItem from "@mui/material/ListItem";
+import Paper from "@mui/material/Paper";
+import { styled } from "@mui/material/styles";
+import Modal from "./Modal";
 
 export const Chat = () => {
   const [chats, setChats] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
+  const [username, setUsername] = useState("");
+
+  const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: "#fff",
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: "left",
+    color: theme.palette.text.secondary,
+  }));
 
   function getChats() {
     fetch("https://z36h06gqg7.execute-api.us-east-1.amazonaws.com/chats")
@@ -51,7 +62,7 @@ export const Chat = () => {
     if (currentChat) {
       const message = {
         chatId: currentChat.id,
-        username: "class 2023",
+        username: username,
         text: inputMessage,
       };
 
@@ -73,6 +84,10 @@ export const Chat = () => {
     setInputMessage(event.target.value);
   }
 
+  function onUsernameInput(event) {
+    setUsername(event.target.value);
+  }
+
   useEffect(() => {
     getChats();
   }, []);
@@ -84,7 +99,7 @@ export const Chat = () => {
         getMessages(chatId);
       }
     },
-    50000,
+    1000,
     currentChat && currentChat.id
   );
 
@@ -94,7 +109,7 @@ export const Chat = () => {
         variant="h3"
         align="center"
         sx={{
-          margin: 2,
+          marginTop: 1,
           fontFamily: "sans-serif",
           fontWeight: 700,
           letterSpacing: ".3rem",
@@ -105,10 +120,13 @@ export const Chat = () => {
       <Grid
         container
         justifyContent="center"
-        // alignItems="center"
-        columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+        rowSpacing={2}
+        sx={{
+          width: "100vh",
+          margin: "auto",
+        }}
       >
-        <Grid item>
+        <Grid item xs={2}>
           <PopupState variant="popover" popupId="">
             {(popupState) => (
               <div>
@@ -140,8 +158,15 @@ export const Chat = () => {
             )}
           </PopupState>
         </Grid>
+        <Grid item xs={2}>
+          <Modal />
+        </Grid>
+        <Grid item xs={6} align="right">
+          <Input placeholder="Username" onInput={onUsernameInput} />
+        </Grid>
         <Grid
           item
+          xs={12}
           sx={{
             height: "75vh",
             minWidth: "85vh",
@@ -152,20 +177,38 @@ export const Chat = () => {
             borderBottom: 1,
             borderColor: "grey.500",
             boxShadow: 1,
+            padding: 2,
           }}
         >
           <Typography variant="h5" align="center" margin={1}>
             {currentChat && currentChat.name} Messages
           </Typography>{" "}
-          <Stack direction="column-reverse" overflow="scroll" height="60vh">
+          <Stack
+            direction="column-reverse"
+            overflow="scroll"
+            height="60vh"
+            spacing={2}
+          >
             {messages.map((message) => (
-              <ListItem key={message.id}>
+              <Item
+                item
+                key={message.id}
+                sx={{
+                  maxWidth: "30vh",
+                }}
+              >
                 {message.username}: {message.text}
-              </ListItem>
+              </Item>
             ))}
           </Stack>
           <div align="center">
-            <Input onInput={onMessageInput} value={inputMessage} />
+            <Input
+              onInput={onMessageInput}
+              value={inputMessage}
+              sx={{
+                minWidth: 350,
+              }}
+            />
             <IconButton
               onClick={() => postMessage()}
               variant="contained"
