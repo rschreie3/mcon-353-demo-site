@@ -27,6 +27,8 @@ export const Chat = () => {
     padding: theme.spacing(1),
     textAlign: "left",
     color: theme.palette.text.secondary,
+    width: "max-content",
+    maxWidth: "fit-content",
   }));
 
   function getChats() {
@@ -190,13 +192,7 @@ export const Chat = () => {
             spacing={2}
           >
             {messages.map((message) => (
-              <Item
-                item
-                key={message.id}
-                sx={{
-                  maxWidth: "30vh",
-                }}
-              >
+              <Item item key={message.id} sx={{}}>
                 {message.username}: {message.text}
               </Item>
             ))}
