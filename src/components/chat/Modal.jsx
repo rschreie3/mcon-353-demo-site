@@ -46,8 +46,14 @@ export default function BasicModal() {
 
   return (
     <div>
-      <Button onClick={handleOpen}>
-        <AddIcon /> New Chat
+      <Button
+        onClick={handleOpen}
+        sx={{
+          width: "20vh",
+        }}
+      >
+        <AddIcon />
+        New Chat
       </Button>
       <Modal
         open={open}
